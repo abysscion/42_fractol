@@ -1,0 +1,4 @@
+rm -f log
+valgrind --leak-check=full --show-leak-kinds=all ./fractol mandelbrot 2>>log
+valgrind --leak-check=full --show-leak-kinds=all ./fractol julia 2>>log
+valgrind --leak-check=full --show-leak-kinds=all ./fractol dunnoyet 2>>log

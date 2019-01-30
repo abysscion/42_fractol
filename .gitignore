@@ -1,3 +1,10 @@
+#Other
+.vscode
+fractol
+README.md
+obj/
+log
+
 # Prerequisites
 *.d
 
