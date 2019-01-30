@@ -14,18 +14,20 @@
 
 void			zoom(char sign, int x, int y, s_storage *b)
 {
-	if (sign == '+')
+	if (sign == '-')
 	{
-		b->ofsx = (x / b->zoom + b->ofsx) - (x / (b->zoom * ZOOM_STEP));
-		b->ofsy = (y / b->zoom + b->ofsy) - (y / (b->zoom * ZOOM_STEP));
+		b->ofsx = (x * b->zoom + b->ofsx) - (x * (b->zoom * ZOOM_STEP));
+		b->ofsy = (y * b->zoom + b->ofsy) - (y * (b->zoom * ZOOM_STEP));
 		b->zoom *= ZOOM_STEP;
+		b->zoom_count -= 0.25f;
 	}
 	else
 	{
-		b->ofsx = (x / b->zoom + b->ofsx) - (x / (b->zoom / ZOOM_STEP));
-		b->ofsy = (y / b->zoom + b->ofsy) - (y / (b->zoom / ZOOM_STEP));
+		b->ofsx = (x * b->zoom + b->ofsx) - (x * (b->zoom / ZOOM_STEP));
+		b->ofsy = (y * b->zoom + b->ofsy) - (y * (b->zoom / ZOOM_STEP));
 		b->zoom /= ZOOM_STEP;
-	}	
+		b->zoom_count += 0.25f;
+	}
 }
 
 void			change_color(int key, s_storage *box)
@@ -51,20 +53,16 @@ void			show_info(s_storage *b)
 	char	*z;
 	char	*i;
 	int		ofsy;
-	int		zl;
 	
-	z = ft_itoa(b->zoom);
 	i = ft_itoa(b->itnum);
+	z = ft_itoa(b->zoom_count);
 	ofsy = WIN_H + 15;
-	zl = 1;
-	while (b->zoom / ft_power(10, zl) > 9)
-		++zl;
 	mlx_put_image_to_window(b->mlx, b->win, b->img_bar, 0, WIN_H);
 	mlx_string_put(b->mlx, b->win, 5, ofsy, 0x00aaee, "zoom: x");
 	mlx_string_put(b->mlx, b->win, 48, ofsy, 0x00aaee, z);
-	mlx_string_put(b->mlx, b->win, 48 + zl * 11, ofsy, 0x00aaee,
+	mlx_string_put(b->mlx, b->win, WIN_W * 0.5 - 80, ofsy, 0x00aaee,
 					"iterations number: x");
-	mlx_string_put(b->mlx, b->win, 48 + zl * 11 + 120, ofsy, 0x00aaee, i);
+	mlx_string_put(b->mlx, b->win, WIN_W * 0.5 + 40, ofsy, 0x00aaee, i);
 	mlx_string_put(b->mlx, b->win, WIN_W - 120, ofsy, 0x00aaee,
 					"[H] - toggle help");
 	free(z);

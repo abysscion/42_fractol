@@ -25,15 +25,15 @@
 void			init_mandelbrot(s_storage *box)
 {
 	box->itnum = ITER_STEP;
-	box->zoom = 100 * ZOOM_MULTI;
+	box->zoom = 1.0 / (100.0 * ZOOM_MULTI);
 	box->ofsx = -1.0 * OFSX_MULTI;
 	box->ofsy = -1.0 * OFSY_MULTI;
 }
 
 static	void	draw_mandelbrot(s_storage *b)
 {
-	b->cr = b->x / b->zoom + b->ofsx;
-	b->ci = b->y / b->zoom + b->ofsy;
+	b->cr = b->x * b->zoom + b->ofsx;
+	b->ci = b->y * b->zoom + b->ofsy;
 	b->zr = 0;
 	b->zi = 0;
 	b->i = -1;

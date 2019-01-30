@@ -54,6 +54,7 @@ typedef	struct	t_storage
 	double	cr;
 	double	x;
 	double	y;
+	float	zoom_count;
 	void	*img_help;
 	void	*img_bar;
 	void	*ptimg;

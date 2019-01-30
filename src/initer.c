@@ -40,6 +40,7 @@ void	init_box(s_storage *box)
 
 void	init_fractal(s_storage *box)
 {
+	box->zoom_count = 0.0f;
 	if (box->ftype == 0)
 		init_mandelbrot(box);
 	else	if (box->ftype == 1)
