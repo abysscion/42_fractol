@@ -25,13 +25,13 @@
 #  define WIN_H 		480
 #  define SEGS_HEIGHT	5
 #  define THREADS_NUM	96
-# elif
+# elif __APPLE__
 #  define WIN_W 		1440
 #  define WIN_H 		810
-#  define SEGS_HEIGHT 	25
-#  define THREADS_NUM	32
+#  define SEGS_HEIGHT 	9
+#  define THREADS_NUM	90
 # endif
-# define ZOOM_STEP		1.1
+# define ZOOM_STEP		1.2
 # define ITER_STEP		25
 # define MSG_USAGE	"\
 usage:			\e[1m./fractol\e[0m \e[33mpattern_name\e[0m\n\

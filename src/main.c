@@ -30,6 +30,7 @@ int				main(int ac, char **av)
 {
 	s_storage *box;
 
+	box = 0x0;
 	if (ac == 2)
 	{
 		box = (s_storage *)malloc(sizeof(s_storage));

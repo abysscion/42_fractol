@@ -12,13 +12,23 @@
 
 #include "../../include/fractol.h"
 
+# ifdef __linux__
+#  define ZOOM_MULTI 2
+#  define OFSX_MULTI 2
+#  define OFSY_MULTI 1.2
+# elif __APPLE__
+#  define ZOOM_MULTI 3.5
+#  define OFSX_MULTI 2.2
+#  define OFSY_MULTI 1.15
+# endif
+
 void			init_mandelbrot(s_storage *box)
 {
 	box->color = 0x000109;
 	box->itnum = ITER_STEP;
-	box->zoom = 200;
-	box->ofsx = -2.0;
-	box->ofsy = -1.2;
+	box->zoom = 100 * ZOOM_MULTI;
+	box->ofsx = -1.0 * OFSX_MULTI;
+	box->ofsy = -1.0 * OFSY_MULTI;
 }
 
 static	void	draw_mandelbrot(s_storage *b)
