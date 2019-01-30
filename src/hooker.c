@@ -23,7 +23,14 @@ int	key_hook(int key, s_storage *box)
 				box->itnum += ITER_STEP;
 			else	if (key == K_NUM_MINUS)
 						box->itnum -= ITER_STEP;
-	split_fractal(box);
+	if (key == K_1 || key == K_2 || key == K_3 || key == K_4 || key == K_5)
+		change_color(key, box);
+	if (key == K_R)
+		init_fractal(box);
+	else
+		split_fractal(box);
+	if (key == K_H && (box->help_toggled = -box->help_toggled))
+		show_help(box);
 	printf("key: %d\n", key);
 	return (0);
 }

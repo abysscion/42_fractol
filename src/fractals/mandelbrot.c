@@ -16,7 +16,7 @@
 #  define ZOOM_MULTI 2
 #  define OFSX_MULTI 2
 #  define OFSY_MULTI 1.2
-# elif __APPLE__
+# else
 #  define ZOOM_MULTI 3.5
 #  define OFSX_MULTI 2.2
 #  define OFSY_MULTI 1.15
@@ -24,7 +24,6 @@
 
 void			init_mandelbrot(s_storage *box)
 {
-	box->color = 0x000109;
 	box->itnum = ITER_STEP;
 	box->zoom = 100 * ZOOM_MULTI;
 	box->ofsx = -1.0 * OFSX_MULTI;
@@ -37,18 +36,24 @@ static	void	draw_mandelbrot(s_storage *b)
 	b->ci = b->y / b->zoom + b->ofsy;
 	b->zr = 0;
 	b->zi = 0;
-	b->i = 0;
-	while (b->zr * b->zr + b->zi * b->zi < 4 && b->i < b->itnum)
+	b->i = -1;
+	while (b->zr * b->zr + b->zi * b->zi < 4 && ++b->i < b->itnum)
 	{
 		b->tmp = b->zr;
 		b->zr = b->zr * b->zr - b->zi * b->zi + b->cr;
 		b->zi = 2 * b->zi * b->tmp + b->ci;
-		b->i++;
 	}
-	if (b->i == b->itnum)
-		ppx_on_img(b->x, b->y, 0x000000, b);
-	else
-		ppx_on_img(b->x, b->y, (b->color * b->i), b);
+	if (b->coloring)
+	{
+		if (b->i == b->itnum)
+			ppx_on_img(b->x, b->y, 0x000000, b);
+		else
+			ppx_on_img(b->x, b->y, (b->color * b->i), b);
+	}
+	else	if (b->i == b->itnum)
+				ppx_on_img(b->x, b->y, 0x000000, b);
+			else
+				ppx_on_img(b->x, b->y, 0xFFFFFF, b);
 }
 
 static	void	*split_help(void *arr)
@@ -65,9 +70,9 @@ static	void	*split_help(void *arr)
 		while (bin->y < bin->y_cap)
 		{
 			draw_mandelbrot(bin);
-			bin->y++;
+			++bin->y;
 		}
-		bin->x++;
+		++bin->x;
 	}
 	return (arr);
 }

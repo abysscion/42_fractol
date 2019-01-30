@@ -22,6 +22,9 @@ void	split_fractal(s_storage *box)
 				printf("julia split\n");
 			else	if (box->ftype == 2)
 						printf("dunnoyet split\n");
+	show_info(box);
+	if (box->help_toggled == 1)
+		box->help_toggled = -1;
 }
 
 void	ppx_on_img(int x, int y, int color, s_storage *box)

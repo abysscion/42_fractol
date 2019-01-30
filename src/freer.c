@@ -20,6 +20,10 @@ void	free_box(s_storage *box)
 		{
 			if (box->img)
 				mlx_destroy_image(box->mlx, box->img);
+			if (box->img_bar)
+				mlx_destroy_image(box->mlx, box->img_bar);
+			if (box->img_help)
+				mlx_destroy_image(box->mlx, box->img_help);
 			if (box->win)
 				mlx_destroy_window(box->mlx, box->win);
 		}

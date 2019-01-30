@@ -17,6 +17,8 @@ void	init_mlx(s_storage *box)
 	box->mlx = mlx_init();
 	box->win = mlx_new_window(box->mlx, WIN_W, WIN_H + 20, "Le Masterpiece");
 	box->img = mlx_new_image(box->mlx, WIN_W, WIN_H);
+	box->img_bar = mlx_new_image(box->mlx, WIN_W, 20);
+	box->img_help = mlx_new_image(box->mlx, 180, 150);
 	box->ptimg = mlx_get_data_addr(box->img,
 									&box->bits_per_pixel,
 									&box->size_line,
@@ -25,7 +27,12 @@ void	init_mlx(s_storage *box)
 
 void	init_box(s_storage *box)
 {
+	box->help_toggled = -1;
+	box->coloring = 1;
+	box->img_help = 0x0;
+	box->img_bar = 0x0;
 	box->ftype = -1;
+	box->color = COLOR_1;
 	box->mlx = 0x0;
 	box->win = 0x0;
 	box->img = 0x0;

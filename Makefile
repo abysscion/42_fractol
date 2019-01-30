@@ -55,7 +55,7 @@ $(MLX_LIB):
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lpthread -lm -o $(NAME)
-
+ 
 clean:
 	rm -rf $(OBJDIR)
 	make -C $(FT) clean
