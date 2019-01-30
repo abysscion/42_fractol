@@ -25,6 +25,8 @@ int	key_hook(int key, s_storage *box)
 						box->itnum -= ITER_STEP;
 	if (key == K_1 || key == K_2 || key == K_3 || key == K_4 || key == K_5)
 		change_color(key, box);
+	if (key == K_J)
+		box->mjulia = !box->mjulia;
 	if (key == K_R)
 		init_fractal(box);
 	else

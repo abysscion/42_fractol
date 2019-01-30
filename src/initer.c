@@ -44,7 +44,7 @@ void	init_fractal(s_storage *box)
 	if (box->ftype == 0)
 		init_mandelbrot(box);
 	else	if (box->ftype == 1)
-				printf("julia fract\n");
+				init_julia(box);
 			else	if (box->ftype == 2)
 					printf("dunnoyet fract\n");
 	split_fractal(box);

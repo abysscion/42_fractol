@@ -13,6 +13,7 @@ SRC		=	main.c \
 			supply.c \
 			initer.c \
 			bonus.c \
+			fractals/julia.c \
 			fractals/mandelbrot.c
 
 OBJ		=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))

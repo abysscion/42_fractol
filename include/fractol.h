@@ -65,6 +65,7 @@ typedef	struct	t_storage
 	int		help_toggled;
 	int		size_line;
 	int		coloring;
+	int		mjulia;
 	int		endian;
 	int		itnum;
 	int		color;
@@ -80,12 +81,15 @@ void			split_mandelbrot(s_storage *box);
 void			init_mandelbrot(s_storage *box);
 void			split_fractal(s_storage *box);
 void			init_fractal(s_storage *box);
+void			split_julia(s_storage *box);
+void			init_julia(s_storage *box);
 void			show_help(s_storage *b);
 void			show_info(s_storage *b);
 void			init_mlx(s_storage *box);
 void			init_box(s_storage *box);
 void			free_box(s_storage *box);
 int				mouse_hook(int key, int x, int y, s_storage *box);
+int				mouse_julia(int x, int y, s_storage *box);
 int				key_hook(int key, s_storage *box);
 
 #endif

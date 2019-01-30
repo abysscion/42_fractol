@@ -19,7 +19,7 @@ void	split_fractal(s_storage *box)
 	if (box->ftype == 0)
 		split_mandelbrot(box);
 	else	if (box->ftype == 1)
-				printf("julia split\n");
+				split_julia(box);
 			else	if (box->ftype == 2)
 						printf("dunnoyet split\n");
 	show_info(box);

@@ -39,6 +39,7 @@ int				main(int ac, char **av)
 		{
 			init_mlx(box);
 			init_fractal(box);
+			mlx_hook(box->win, 6, 0, mouse_julia, box);
 			mlx_key_hook(box->win, key_hook, box);
 			mlx_mouse_hook(box->win, mouse_hook, box);
 			mlx_loop(box->mlx);
