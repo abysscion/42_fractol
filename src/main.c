@@ -18,12 +18,12 @@ static	int		is_type_valid(char *str, s_storage *box)
 		box->ftype = 0;
 	else	if (ft_strcmp(str, "julia") == 0)
 				box->ftype = 1;
-			else	if (ft_strcmp(str, "dunnoyet") == 0)
+			else	if (ft_strcmp(str, "burningship") == 0)
 						box->ftype = 2;
 	if (box->ftype > -1 && box->ftype < 3)
 		return (1);
 	else
-		return (0);			
+		return (0);
 }
 
 int				main(int ac, char **av)
@@ -49,56 +49,3 @@ int				main(int ac, char **av)
 	ft_putendl(MSG_USAGE);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// void *inc_x(void *x_void_ptr)
-// {
-// 	int *x_ptr = (int *)x_void_ptr;
-
-// 	while (++(*x_ptr) < 10)
-// 		;
-
-// 	ft_putendl("x increment finished");
-// 	return (0x0);
-// }
-
-// int main()
-// {
-// 	int x = 0, y = 0;
-// 	pthread_t inc_x_thread;
-
-// 	pthread_create(&inc_x_thread, 0x0, inc_x, &x);
-	
-// 	while (++y < 10)
-// 		;
-// 	ft_putendl("y increment finished");
-
-// 	pthread_join(inc_x_thread, 0x0);
-// 	return 0;
-// }
-

@@ -56,16 +56,16 @@ void			change_color(int key, s_storage *box)
 							box->color = COLOR_3;
 						else	if (key == K_5)
 								box->color = COLOR_4;
-	}	
+	}
 }
 
 void			show_info(s_storage *b)
 {
-  char *strz;
-  char *strzn;
-  char *stri;
-  char *strin;
-  int ofsy;
+  char	*strz;
+  char	*strzn;
+  char	*stri;
+  char	*strin;
+  int	ofsy;
 
   strzn = ft_itoa(b->zoom_count);
   strin = ft_itoa(b->itnum);
@@ -75,37 +75,12 @@ void			show_info(s_storage *b)
   mlx_put_image_to_window(b->mlx, b->win, b->img_bar, 0, WIN_H);
   mlx_string_put(b->mlx, b->win, 5, ofsy, 0x00aaee, stri);
   mlx_string_put(b->mlx, b->win, WIN_W * 0.5 - 80, ofsy, 0x00aaee, strz);
-  mlx_string_put(b->mlx, b->win, WIN_W - ERR_X, ofsy, 0x00aaee, "[H] - toggle help");
+  mlx_string_put(b->mlx, b->win, WIN_W - ERR_X, ofsy, 0x00aaee,
+  					"[H] - toggle help");
   free(strz);
   free(stri);
   free(strzn);
   free(strin);
-
-
-
-
-
-
-
-  /*
-	char	*z;
-	char	*i;
-	int		ofsy;
-	
-	i = ft_itoa(b->itnum);
-	z = ft_itoa(b->zoom_count);
-	ofsy = WIN_H + ERR_Y;
-	mlx_put_image_to_window(b->mlx, b->win, b->img_bar, 0, WIN_H);
-	mlx_string_put(b->mlx, b->win, 5, ofsy, 0x00aaee, "zoom: x");
-	mlx_string_put(b->mlx, b->win, 48, ofsy, 0x00aaee, z);
-	mlx_string_put(b->mlx, b->win, WIN_W * 0.5 - 80, ofsy, 0x00aaee,
-					"iterations number: x");
-	mlx_string_put(b->mlx, b->win, WIN_W * 0.5 + 40, ofsy, 0x00aaee, i);
-	mlx_string_put(b->mlx, b->win, WIN_W - 120, ofsy, 0x00aaee,
-					"[H] - toggle help");
-	free(z);
-	free(i);
-  */
 }
 
 static	void	put_text(int x, int y, s_storage *b)
@@ -119,9 +94,9 @@ static	void	put_text(int x, int y, s_storage *b)
 	mlx_string_put(b->mlx, b->win, x + 5, y + MOFSY * 4, 0xB56102,
 					"[R]      - Reset image");
 	mlx_string_put(b->mlx, b->win, x + 5, y + MOFSY * 5, 0xB56102,
-					"[ESC]    - Quit");
-	mlx_string_put(b->mlx, b->win, x + 5, y + MOFSY * 6, 0xB56102,
 					"[J]      - Toogle julia mouse");
+	mlx_string_put(b->mlx, b->win, x + 5, y + MOFSY * 6, 0xB56102,
+					"[ESC]    - Quit");
 }
 
 void			show_help(s_storage *b)

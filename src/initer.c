@@ -46,6 +46,6 @@ void	init_fractal(s_storage *box)
 	else	if (box->ftype == 1)
 				init_julia(box);
 			else	if (box->ftype == 2)
-					printf("dunnoyet fract\n");
+					init_bship(box);
 	split_fractal(box);
 }

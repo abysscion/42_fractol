@@ -33,7 +33,6 @@ int	key_hook(int key, s_storage *box)
 		split_fractal(box);
 	if (key == K_H && (box->help_toggled = -box->help_toggled))
 		show_help(box);
-	printf("key: %d\n", key);
 	return (0);
 }
 

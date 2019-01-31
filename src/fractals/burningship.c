@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emayert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 00:45:00 by emayert           #+#    #+#             */
-/*   Updated: 2019/01/31 00:45:30 by emayert          ###   ########.fr       */
+/*   Created: 2019/01/31 03:45:00 by emayert           #+#    #+#             */
+/*   Updated: 2019/01/31 03:45:30 by emayert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,34 @@
 
 # ifdef __linux__
 #  define ZOOM_MULTI 2.1
-#  define OFSX_MULTI 1.525
-#  define OFSY_MULTI 1.15
+#  define OFSX_MULTI 1.9
+#  define OFSY_MULTI 1.8
 # else
 #  define ZOOM_MULTI 4.5
 #  define OFSX_MULTI 1.6
 #  define OFSY_MULTI 0.9
 # endif
 
-int				mouse_julia(int x, int y, s_storage *box)
+void			init_bship(s_storage *box)
 {
-	if (box->ftype == 1 && box->mjulia)
-	{
-		box->cr = x * 2;
-		box->ci = y * 2 - 800;
-		split_fractal(box);
-	}
-	return (0);
-}
-
-void			init_julia(s_storage *box)
-{
-	box->itnum = ITER_STEP;
+	box->itnum = ITER_STEP + 39;
 	box->zoom = 1.0 / (100.0 * ZOOM_MULTI);
 	box->ofsx = -1.0 * OFSX_MULTI;
 	box->ofsy = -1.0 * OFSY_MULTI;
-	box->cr = 0.285;
-	box->ci = 0.01;
-	box->mjulia = 1;
 }
 
-static	void	draw_julia(s_storage *b)
+static	void	draw_bship(s_storage *b)
 {
-	b->zr = b->x * b->zoom + b->ofsx;
-	b->zi = b->y * b->zoom + b->ofsy;
+	b->cr = b->x * b->zoom + b->ofsx;
+	b->ci = b->y * b->zoom + b->ofsy;
+	b->zr = 0;
+	b->zi = 0;
 	b->i = -1;
 	while (b->zr * b->zr + b->zi * b->zi < 4 && ++b->i < b->itnum)
 	{
-		b->tmp = b->zr;
-		b->zr = b->zr * b->zr - b->zi * b->zi - 0.8 + (b->cr / WIN_W);
-		b->zi = 2 * b->zi * b->tmp + b->ci / WIN_W;
+		b->tmp = b->zr * b->zr - b->zi * b->zi + b->cr;
+		b->zi = fabs(2 * b->zr * b->zi) + b->ci;
+		b->zr = b->tmp;
 	}
 	if (b->coloring)
 	{
@@ -81,7 +69,7 @@ static	void	*split_help(void *arr)
 		bin->y = tmp;
 		while (bin->y < bin->y_cap)
 		{
-			draw_julia(bin);
+			draw_bship(bin);
 			++bin->y;
 		}
 		++bin->x;
@@ -89,7 +77,7 @@ static	void	*split_help(void *arr)
 	return (arr);
 }
 
-void			split_julia(s_storage *box)
+void			split_bship(s_storage *box)
 {
 	s_storage	arr[THREADS_NUM];
 	pthread_t	t[THREADS_NUM];

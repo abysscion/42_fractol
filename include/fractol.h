@@ -13,18 +13,17 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdio.h>
+# include "../lib/libft/libft.h"
+# include "../lib/libmlx/mlx.h"
 # include "keys.h"
 # include <math.h>
 # include <pthread.h>
-# include "../lib/libmlx/mlx.h"
-# include "../lib/libft/libft.h"
 
 # ifdef __linux__
 #  define WIN_W			640
 #  define WIN_H 		480
 #  define HELP_W		180
-#  define HELP_H		170
+#  define HELP_H		100
 #  define SEGS_HEIGHT		5
 #  define THREADS_NUM		96
 # else
@@ -45,7 +44,7 @@
 # define MSG_USAGE	"\
 usage:			\e[1m./fractol\e[0m \e[33mpattern_name\e[0m\n\
 available patterns:	[\e[33mmandelbrot\e[0m | \e[33mjulia\e[0m \
-| \e[33mdunnoyet\e[0m]"
+| \e[33mburningship\e[0m]"
 
 typedef	struct	t_storage
 {
@@ -86,7 +85,9 @@ void			split_mandelbrot(s_storage *box);
 void			init_mandelbrot(s_storage *box);
 void			split_fractal(s_storage *box);
 void			init_fractal(s_storage *box);
+void			split_bship(s_storage *box);
 void			split_julia(s_storage *box);
+void			init_bship(s_storage *box);
 void			init_julia(s_storage *box);
 void			show_help(s_storage *b);
 void			show_info(s_storage *b);
