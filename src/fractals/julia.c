@@ -17,9 +17,9 @@
 #  define OFSX_MULTI 1.525
 #  define OFSY_MULTI 1.15
 # else
-#  define ZOOM_MULTI 3.5
-#  define OFSX_MULTI 2.2
-#  define OFSY_MULTI 1.15
+#  define ZOOM_MULTI 4.5
+#  define OFSX_MULTI 1.6
+#  define OFSY_MULTI 0.9
 # endif
 
 int				mouse_julia(int x, int y, s_storage *box)

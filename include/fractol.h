@@ -23,14 +23,19 @@
 # ifdef __linux__
 #  define WIN_W			640
 #  define WIN_H 		480
-#  define SEGS_HEIGHT	5
-#  define THREADS_NUM	96
+#  define HELP_W		180
+#  define HELP_H		170
+#  define SEGS_HEIGHT		5
+#  define THREADS_NUM		96
 # else
 #  define WIN_W 		1440
 #  define WIN_H 		810
-#  define SEGS_HEIGHT 	9
-#  define THREADS_NUM	90
+#  define HELP_W		300
+#  define HELP_H		170
+#  define SEGS_HEIGHT		9
+#  define THREADS_NUM		90
 # endif
+
 # define ZOOM_STEP		1.2
 # define ITER_STEP		25
 # define COLOR_1		0x000202

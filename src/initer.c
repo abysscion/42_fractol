@@ -18,7 +18,7 @@ void	init_mlx(s_storage *box)
 	box->win = mlx_new_window(box->mlx, WIN_W, WIN_H + 20, "Le Masterpiece");
 	box->img = mlx_new_image(box->mlx, WIN_W, WIN_H);
 	box->img_bar = mlx_new_image(box->mlx, WIN_W, 20);
-	box->img_help = mlx_new_image(box->mlx, 180, 150);
+	box->img_help = mlx_new_image(box->mlx, HELP_W, HELP_H);
 	box->ptimg = mlx_get_data_addr(box->img,
 									&box->bits_per_pixel,
 									&box->size_line,

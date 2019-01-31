@@ -5,6 +5,7 @@ README.md
 obj/
 log
 .backup.zip
+*~
 
 # Prerequisites
 *.d
