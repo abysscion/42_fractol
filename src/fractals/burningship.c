@@ -17,9 +17,9 @@
 #  define OFSX_MULTI 1.9
 #  define OFSY_MULTI 1.8
 # else
-#  define ZOOM_MULTI 4.5
-#  define OFSX_MULTI 1.6
-#  define OFSY_MULTI 0.9
+#  define ZOOM_MULTI 4
+#  define OFSX_MULTI 2
+#  define OFSY_MULTI 1.555
 # endif
 
 void			init_bship(s_storage *box)
