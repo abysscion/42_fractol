@@ -22,8 +22,7 @@
 # define ERR_X 180
 #endif
 
-
-void			zoom(char sign, int x, int y, s_storage *b)
+void			zoom(char sign, int x, int y, t_storage *b)
 {
 	if (sign == '-')
 	{
@@ -41,7 +40,7 @@ void			zoom(char sign, int x, int y, s_storage *b)
 	}
 }
 
-void			change_color(int key, s_storage *box)
+void			change_color(int key, t_storage *box)
 {
 	if (key == K_1)
 		box->coloring = 0;
@@ -49,41 +48,41 @@ void			change_color(int key, s_storage *box)
 	{
 		box->coloring = 1;
 		if (key == K_2)
-				box->color = COLOR_1;
-		else	if (key == K_3)
-					box->color = COLOR_2;
-				else	if (key == K_4)
-							box->color = COLOR_3;
-						else	if (key == K_5)
-								box->color = COLOR_4;
+			box->color = COLOR_1;
+		else if (key == K_3)
+			box->color = COLOR_2;
+		else if (key == K_4)
+			box->color = COLOR_3;
+		else if (key == K_5)
+			box->color = COLOR_4;
 	}
 }
 
-void			show_info(s_storage *b)
+void			show_info(t_storage *b)
 {
-  char	*strz;
-  char	*strzn;
-  char	*stri;
-  char	*strin;
-  int	ofsy;
+	char	*strz;
+	char	*strzn;
+	char	*stri;
+	char	*strin;
+	int		ofsy;
 
-  strzn = ft_itoa(b->zoom_count);
-  strin = ft_itoa(b->itnum);
-  strz = ft_strjoin("zoom: x", strzn);
-  stri = ft_strjoin("iterations count: ", strin);
-  ofsy = WIN_H + ERR_Y;
-  mlx_put_image_to_window(b->mlx, b->win, b->img_bar, 0, WIN_H);
-  mlx_string_put(b->mlx, b->win, 5, ofsy, 0x00aaee, stri);
-  mlx_string_put(b->mlx, b->win, WIN_W * 0.5 - 80, ofsy, 0x00aaee, strz);
-  mlx_string_put(b->mlx, b->win, WIN_W - ERR_X, ofsy, 0x00aaee,
-  					"[H] - toggle help");
-  free(strz);
-  free(stri);
-  free(strzn);
-  free(strin);
+	strzn = ft_itoa(b->zoom_count);
+	strin = ft_itoa(b->itnum);
+	strz = ft_strjoin("zoom: x", strzn);
+	stri = ft_strjoin("iterations count: ", strin);
+	ofsy = WIN_H + ERR_Y;
+	mlx_put_image_to_window(b->mlx, b->win, b->img_bar, 0, WIN_H);
+	mlx_string_put(b->mlx, b->win, 5, ofsy, 0x00aaee, stri);
+	mlx_string_put(b->mlx, b->win, WIN_W / 2 - 80, ofsy, 0x00aaee, strz);
+	mlx_string_put(b->mlx, b->win, WIN_W - ERR_X, ofsy, 0x00aaee,
+					"[H] - toggle help");
+	free(strz);
+	free(stri);
+	free(strzn);
+	free(strin);
 }
 
-static	void	put_text(int x, int y, s_storage *b)
+static	void	put_text(int x, int y, t_storage *b)
 {
 	mlx_string_put(b->mlx, b->win, x + 5, y + MOFSY, 0xB56102,
 					"[MWheel] - Zoom");
@@ -99,7 +98,7 @@ static	void	put_text(int x, int y, s_storage *b)
 					"[ESC]    - Quit");
 }
 
-void			show_help(s_storage *b)
+void			show_help(t_storage *b)
 {
 	int	ofsx;
 	int	ofsy;

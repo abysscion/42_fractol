@@ -12,17 +12,17 @@
 
 #include "../../include/fractol.h"
 
-# ifdef __linux__
-#  define ZOOM_MULTI 2.1
-#  define OFSX_MULTI 1.525
-#  define OFSY_MULTI 1.15
-# else
-#  define ZOOM_MULTI 4.5
-#  define OFSX_MULTI 1.6
-#  define OFSY_MULTI 0.9
-# endif
+#ifdef __linux__
+# define ZOOM_MULTI 2.1
+# define OFSX_MULTI 1.525
+# define OFSY_MULTI 1.15
+#else
+# define ZOOM_MULTI 4.5
+# define OFSX_MULTI 1.6
+# define OFSY_MULTI 0.9
+#endif
 
-int				mouse_julia(int x, int y, s_storage *box)
+int				mouse_julia(int x, int y, t_storage *box)
 {
 	if (box->ftype == 1 && box->mjulia)
 	{
@@ -33,7 +33,7 @@ int				mouse_julia(int x, int y, s_storage *box)
 	return (0);
 }
 
-void			init_julia(s_storage *box)
+void			init_julia(t_storage *box)
 {
 	box->itnum = ITER_STEP;
 	box->zoom = 1.0 / (100.0 * ZOOM_MULTI);
@@ -44,7 +44,7 @@ void			init_julia(s_storage *box)
 	box->mjulia = 1;
 }
 
-static	void	draw_julia(s_storage *b)
+static	void	draw_julia(t_storage *b)
 {
 	b->zr = b->x * b->zoom + b->ofsx;
 	b->zi = b->y * b->zoom + b->ofsy;
@@ -62,15 +62,15 @@ static	void	draw_julia(s_storage *b)
 		else
 			ppx_on_img(b->x, b->y, (b->color * b->i), b);
 	}
-	else	if (b->i == b->itnum)
-				ppx_on_img(b->x, b->y, 0x000000, b);
-			else
-				ppx_on_img(b->x, b->y, 0xFFFFFF, b);
+	else if (b->i == b->itnum)
+		ppx_on_img(b->x, b->y, 0x000000, b);
+	else
+		ppx_on_img(b->x, b->y, 0xFFFFFF, b);
 }
 
 static	void	*split_help(void *arr)
 {
-	s_storage	*bin;
+	t_storage	*bin;
 	int			tmp;
 
 	bin = arr;
@@ -89,16 +89,16 @@ static	void	*split_help(void *arr)
 	return (arr);
 }
 
-void			split_julia(s_storage *box)
+void			split_julia(t_storage *box)
 {
-	s_storage	arr[THREADS_NUM];
+	t_storage	arr[THREADS_NUM];
 	pthread_t	t[THREADS_NUM];
 	int			i;
 
 	i = -1;
 	while (++i < THREADS_NUM)
 	{
-		ft_memcpy((void*)&arr[i], (void*)box, sizeof(s_storage));
+		ft_memcpy((void*)&arr[i], (void*)box, sizeof(t_storage));
 		arr[i].y = SEGS_HEIGHT * i;
 		arr[i].y_cap = SEGS_HEIGHT * (i + 1);
 		pthread_create(&t[i], NULL, split_help, &arr[i]);

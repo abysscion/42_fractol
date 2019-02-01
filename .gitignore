@@ -6,6 +6,8 @@ obj/
 log
 .backup.zip
 *~
+memcheck
+.DS_Store
 
 # Prerequisites
 *.d

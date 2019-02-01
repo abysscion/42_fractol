@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void	init_mlx(s_storage *box)
+void	init_mlx(t_storage *box)
 {
 	box->mlx = mlx_init();
 	box->win = mlx_new_window(box->mlx, WIN_W, WIN_H + 20, "Le Masterpiece");
@@ -25,7 +25,7 @@ void	init_mlx(s_storage *box)
 									&box->endian);
 }
 
-void	init_box(s_storage *box)
+void	init_box(t_storage *box)
 {
 	box->help_toggled = -1;
 	box->coloring = 1;
@@ -38,14 +38,14 @@ void	init_box(s_storage *box)
 	box->img = 0x0;
 }
 
-void	init_fractal(s_storage *box)
+void	init_fractal(t_storage *box)
 {
 	box->zoom_count = 0.0f;
 	if (box->ftype == 0)
 		init_mandelbrot(box);
-	else	if (box->ftype == 1)
-				init_julia(box);
-			else	if (box->ftype == 2)
-					init_bship(box);
+	else if (box->ftype == 1)
+		init_julia(box);
+	else if (box->ftype == 2)
+		init_bship(box);
 	split_fractal(box);
 }

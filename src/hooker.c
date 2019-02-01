@@ -12,17 +12,17 @@
 
 #include "../include/fractol.h"
 
-int	key_hook(int key, s_storage *box)
+int	key_hook(int key, t_storage *box)
 {
 	if (key == K_ESC)
 	{
 		free_box(box);
 		exit(0);
 	}
-	else	if (key == K_NUM_PLUS)
-				box->itnum += ITER_STEP;
-			else	if (key == K_NUM_MINUS)
-						box->itnum -= ITER_STEP;
+	else if (key == K_NUM_PLUS)
+		box->itnum += ITER_STEP;
+	else if (key == K_NUM_MINUS)
+		box->itnum -= ITER_STEP;
 	if (key == K_1 || key == K_2 || key == K_3 || key == K_4 || key == K_5)
 		change_color(key, box);
 	if (key == K_J)
@@ -36,12 +36,12 @@ int	key_hook(int key, s_storage *box)
 	return (0);
 }
 
-int	mouse_hook(int key, int x, int y, s_storage *box)
+int	mouse_hook(int key, int x, int y, t_storage *box)
 {
 	if (key == M_MWHEELUP)
 		zoom('+', x, y, box);
-	else	if (key == M_MWHEELDOWN)
-			zoom('-', x, y, box);
+	else if (key == M_MWHEELDOWN)
+		zoom('-', x, y, box);
 	split_fractal(box);
 	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void	free_box(s_storage *box)
+void	free_box(t_storage *box)
 {
 	if (box)
 	{

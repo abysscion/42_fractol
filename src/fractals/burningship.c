@@ -12,17 +12,17 @@
 
 #include "../../include/fractol.h"
 
-# ifdef __linux__
-#  define ZOOM_MULTI 2.1
-#  define OFSX_MULTI 1.9
-#  define OFSY_MULTI 1.8
-# else
-#  define ZOOM_MULTI 4
-#  define OFSX_MULTI 2
-#  define OFSY_MULTI 1.555
-# endif
+#ifdef __linux__
+# define ZOOM_MULTI 2.1
+# define OFSX_MULTI 1.9
+# define OFSY_MULTI 1.8
+#else
+# define ZOOM_MULTI 4
+# define OFSX_MULTI 2
+# define OFSY_MULTI 1.555
+#endif
 
-void			init_bship(s_storage *box)
+void			init_bship(t_storage *box)
 {
 	box->itnum = ITER_STEP + 39;
 	box->zoom = 1.0 / (100.0 * ZOOM_MULTI);
@@ -30,7 +30,7 @@ void			init_bship(s_storage *box)
 	box->ofsy = -1.0 * OFSY_MULTI;
 }
 
-static	void	draw_bship(s_storage *b)
+static	void	draw_bship(t_storage *b)
 {
 	b->cr = b->x * b->zoom + b->ofsx;
 	b->ci = b->y * b->zoom + b->ofsy;
@@ -50,15 +50,15 @@ static	void	draw_bship(s_storage *b)
 		else
 			ppx_on_img(b->x, b->y, (b->color * b->i), b);
 	}
-	else	if (b->i == b->itnum)
-				ppx_on_img(b->x, b->y, 0x000000, b);
-			else
-				ppx_on_img(b->x, b->y, 0xFFFFFF, b);
+	else if (b->i == b->itnum)
+		ppx_on_img(b->x, b->y, 0x000000, b);
+	else
+		ppx_on_img(b->x, b->y, 0xFFFFFF, b);
 }
 
 static	void	*split_help(void *arr)
 {
-	s_storage	*bin;
+	t_storage	*bin;
 	int			tmp;
 
 	bin = arr;
@@ -77,16 +77,16 @@ static	void	*split_help(void *arr)
 	return (arr);
 }
 
-void			split_bship(s_storage *box)
+void			split_bship(t_storage *box)
 {
-	s_storage	arr[THREADS_NUM];
+	t_storage	arr[THREADS_NUM];
 	pthread_t	t[THREADS_NUM];
 	int			i;
 
 	i = -1;
 	while (++i < THREADS_NUM)
 	{
-		ft_memcpy((void*)&arr[i], (void*)box, sizeof(s_storage));
+		ft_memcpy((void*)&arr[i], (void*)box, sizeof(t_storage));
 		arr[i].y = SEGS_HEIGHT * i;
 		arr[i].y_cap = SEGS_HEIGHT * (i + 1);
 		pthread_create(&t[i], NULL, split_help, &arr[i]);

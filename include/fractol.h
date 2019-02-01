@@ -31,8 +31,8 @@
 #  define WIN_H 		810
 #  define HELP_W		300
 #  define HELP_H		170
-#  define SEGS_HEIGHT		9
-#  define THREADS_NUM		90
+#  define SEGS_HEIGHT		90
+#  define THREADS_NUM		9
 # endif
 
 # define ZOOM_STEP		1.2
@@ -41,12 +41,8 @@
 # define COLOR_2		0x020002
 # define COLOR_3		0x020200
 # define COLOR_4		0x123456
-# define MSG_USAGE	"\
-usage:			\e[1m./fractol\e[0m \e[33mpattern_name\e[0m\n\
-available patterns:	[\e[33mmandelbrot\e[0m | \e[33mjulia\e[0m \
-| \e[33mburningship\e[0m]"
 
-typedef	struct	t_storage
+typedef	struct	s_storage
 {
 	double	ofsx;
 	double	ofsy;
@@ -76,26 +72,26 @@ typedef	struct	t_storage
 	int		ftype;
 	int		y_cap;
 	int		i;
-}				s_storage;
+}				t_storage;
 
-void			ppx_on_img(int x, int y, int color, s_storage *box);
-void			zoom(char sign, int x, int y, s_storage *b);
-void			change_color(int key, s_storage *box);
-void			split_mandelbrot(s_storage *box);
-void			init_mandelbrot(s_storage *box);
-void			split_fractal(s_storage *box);
-void			init_fractal(s_storage *box);
-void			split_bship(s_storage *box);
-void			split_julia(s_storage *box);
-void			init_bship(s_storage *box);
-void			init_julia(s_storage *box);
-void			show_help(s_storage *b);
-void			show_info(s_storage *b);
-void			init_mlx(s_storage *box);
-void			init_box(s_storage *box);
-void			free_box(s_storage *box);
-int				mouse_hook(int key, int x, int y, s_storage *box);
-int				mouse_julia(int x, int y, s_storage *box);
-int				key_hook(int key, s_storage *box);
+void			ppx_on_img(int x, int y, int color, t_storage *box);
+void			zoom(char sign, int x, int y, t_storage *b);
+void			change_color(int key, t_storage *box);
+void			split_mandelbrot(t_storage *box);
+void			init_mandelbrot(t_storage *box);
+void			split_fractal(t_storage *box);
+void			init_fractal(t_storage *box);
+void			split_bship(t_storage *box);
+void			split_julia(t_storage *box);
+void			init_bship(t_storage *box);
+void			init_julia(t_storage *box);
+void			show_help(t_storage *b);
+void			show_info(t_storage *b);
+void			init_mlx(t_storage *box);
+void			init_box(t_storage *box);
+void			free_box(t_storage *box);
+int				mouse_hook(int key, int x, int y, t_storage *box);
+int				mouse_julia(int x, int y, t_storage *box);
+int				key_hook(int key, t_storage *box);
 
 #endif
